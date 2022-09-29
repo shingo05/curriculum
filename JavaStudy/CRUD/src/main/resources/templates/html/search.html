@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ <div class="container">
+        <h1>ユーザー情報一覧</h1>
+        <div class="float-end">
+            <a th:href="@{/html/add}" class="btn btn-primary">新規登録はこちら</a>
+        </div>
+        <form th:action="@{/html/search}" th:object="${crudSearchRequest}" th:method="post">
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" class="form-control1" id="id" name="id" th:value="${id}">
+                <label for="name">名前</label>
+                <input type="text" class="form-control2" id="name" name="name" th:value="${name}">
+            </div><br />
+            <button type="submit" class="btn btn-primary">検索</button>
+        </form>
+        <div th:if="${crudlist}">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>名前</th>
+                        <th>カナ</th>
+                        <th>Password</th>
+                        <th>Mail</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="crud : ${crudlist}" th:object="${crud}" class="align-middle">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{name}"></td>
+                        <td th:text="*{kana}"></td>
+                        <td th:text="*{password}"></td>
+                        <td th:text="*{mail}"></td>
+                        <td>
+                        <a th:href="@{/html/{id}/edit(id=*{id})}" class="btn btn-primary">編集</a>
+                        <a th:href="@{/html/{id}/delete(id=*{id})}" class="btn btn-secondary">削除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

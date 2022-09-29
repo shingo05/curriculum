@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CrudMapper">
+    
+    <select id="findAll" resultType="com.example.demo.entity.CrudInfo">
+        SELECT * FROM crud
+    </select>
+    
+    <select id="findById" resultType="com.example.demo.entity.CrudInfo">
+        SELECT * FROM crud WHERE id = #{id}
+    </select>
+    
+    <select id="search" resultType="com.example.demo.entity.CrudInfo">
+        SELECT
+            *
+        FROM
+            crud
+            <choose>
+            <when test="id != null and id != ''">
+                WHERE id = #{id}
+            </when>
+            <when test="name != null and name != ''">
+                 WHERE name LIKE CONCAT('%', #{name}, '%')
+            </when>
+            <when test="id != null and id != '' and name != null and name != ''">
+                 WHERE id = #{id} AND name LIKE CONCAT('%', #{name}, '%')
+            </when>
+            </choose>
+     </select>
+    
+    <insert id="save">
+        INSERT INTO crud
+            (id, name, kana, password, mail)
+        VALUES
+            (#{id}, #{name}, #{kana}, #{password}, #{mail})
+    </insert>
+  
+    <update id="update">
+        UPDATE crud SET name = #{name}, kana = #{kana}, password = #{password}, mail = #{mail} WHERE id = #{id}
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM crud WHERE id = #{id}
+    </delete>
+</mapper>

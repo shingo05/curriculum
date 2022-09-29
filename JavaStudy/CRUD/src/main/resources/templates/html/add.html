@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+        <div th:if="${validationError}" th:each="error : ${validationError}">
+            <label class="text-danger" th:text="${error}"></label>
+        </div>
+        <h1>ユーザー新規登録</h1>
+        <form th:action="@{/html/create}" th:object="${crudAddRequest}" th:method="post">
+        	 <div class="form-group">
+                <label>ID：<span class="text-danger">※</span></label>
+                <input type="text" th:field="*{id}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>名前：<span class="text-danger">※</span></label>
+                <input type="text" th:field="*{name}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>カナ：</label>
+                <input type="text" th:field="*{kana}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Password：<span class="text-danger">※</span></label>
+                <input type="text" th:field="*{password}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Mail：</label>
+                <input type="text" th:field="*{mail}" class="form-control">
+            </div>
+            <br />
+            <div class="text-center">
+                <input type="submit" value="登録" class="btn btn-primary">
+                <a href="/html/list" class="btn btn-secondary">キャンセル</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
