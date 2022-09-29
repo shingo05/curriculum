@@ -1,0 +1,42 @@
+@media screen and (max-width: 479px) {
+
+    .header{
+        width: 200px;
+        height: 200px;
+    }
+    
+    .base{
+        width: 60px;
+        height: 160px;
+        margin-left: 70px;
+    }
+    
+    
+    .left{
+        width: 200px;
+        float: none;
+    }
+    
+    .right{
+        width: 200px;
+        height: 200px;
+        padding-top: 10px;
+        float: none;
+    }
+    
+    .b-one{
+        margin: 10px 30PX 10PX 30PX;
+    }
+    
+    .b-twe{
+        margin: 0px 30px 10px 30px;
+    }
+    
+    .b-three{
+        margin-left: 30px;
+    }
+    
+    .flooter{
+        width: 200px;
+    }
+}
